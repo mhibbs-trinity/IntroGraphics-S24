@@ -5,7 +5,7 @@ String[] tree = new String [6];
 String[] bush = new String [4];
 
 /* Mode variable to choose which LSystem to use */
-public enum Mode { KOCH, HILBERT, DRAGON, TREE, BUSH }
+public enum Mode { KOCH, HILBERT, DRAGON, TREE, BUSH, GOSPER }
 Mode mode = Mode.KOCH;
 
 HashMap<Character,String> rules = new HashMap<Character,String>();
@@ -14,23 +14,7 @@ String gosper = "A";
 
 void setup() {
   rules.put('A',"A-B--B+A++AA+B-");
-  rules.put('B',"+A-BB--B-A++A+B");
-  
-  for(int j=0; j<2; j++) {
-    String newGosper = "";
-    for(int i=0; i<gosper.length(); i++) {
-      char c = gosper.charAt(i);
-      if(rules.containsKey(c)) {
-        newGosper += rules.get(c);
-      }else {
-        newGosper += c;
-      }
-    }
-    gosper = newGosper;
-  }
-  
-  println(gosper);
-  
+  rules.put('B',"+A-BB--B-A++A+B"); 
   
   size(800,800);
   koch[0] = "F";
@@ -101,6 +85,21 @@ void draw() {
     }
   }
   
+  if(mode == Mode.GOSPER) {
+    translate(width-10,height/2);
+    noFill();
+    float len = height / pow(2.5,level) / 2;
+    for(int i=0; i<gosper.length(); i++) {
+      char c = gosper.charAt(i);
+      if(c == 'A' || c == 'B') {
+        line(0,0, 0,-len);
+        translate(0,-len);
+      }
+      if(c == '-') { rotate(-PI/3); }
+      if(c == '+') { rotate(PI/3); }
+    }
+  }
+  
 }
 
 
@@ -116,10 +115,23 @@ void keyPressed() {
     if(mode == Mode.DRAGON && level > 10) level = 10;
     if(mode == Mode.TREE && level > 5) level = 5;
     if(mode == Mode.BUSH && level > 3) level = 3;
+    if(mode == Mode.GOSPER) {
+      String newGosper = "";
+      for(int i=0; i<gosper.length(); i++) {
+        char c = gosper.charAt(i);
+        if(rules.containsKey(c)) {
+          newGosper += rules.get(c);
+        }else {
+          newGosper += c;
+        }
+      }
+      gosper = newGosper;
+    }
   }
   if(key == 'k' || key == 'K') { mode = Mode.KOCH; level = 0; }
   if(key == 'h' || key == 'H') { mode = Mode.HILBERT; level = 0; }
   if(key == 'd' || key == 'D') { mode = Mode.DRAGON; level = 0; }
   if(key == 't' || key == 'T') { mode = Mode.TREE; level = 0; }
   if(key == 'b' || key == 'B') { mode = Mode.BUSH; level = 0; }
+  if(key == 'g' || key == 'G') { mode = Mode.GOSPER; level = 0; gosper="A";}
 }
