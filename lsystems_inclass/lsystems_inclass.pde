@@ -73,6 +73,7 @@ void draw() {
     translate(width-100, height-100);
     noFill();
     float len = (height-200) / (pow(2,level) - 1);
+    float theta = map(mouseX, 0,width, 0,2*PI);
     for(int i=0; i<hilbert[level].length(); i++) {
       char c = hilbert[level].charAt(i);
       if(c == 'F') {
@@ -80,8 +81,8 @@ void draw() {
         bezier(0,0, -len/2,-len/2, len/2,-len/2  ,0,-len);
         translate(0,-len);
       }
-      if(c == '-') { rotate(-PI/2); }
-      if(c == '+') { rotate(PI/2); }
+      if(c == '-') { rotate(-theta); }
+      if(c == '+') { rotate(theta); }
     }
   }
   
@@ -100,10 +101,47 @@ void draw() {
     }
   }
   
+  if(mode == Mode.TREE) {
+    translate(width/2, height);
+    float len = 25;
+    float theta = map(mouseX, 0,width, 0,2*PI);
+    for(int i=0; i<tree[level].length(); i++) {
+      char c = tree[level].charAt(i);
+      if(c == '0' || c == '1') {
+        line(0,0, 0,-len);
+        translate(0,-len);
+      }
+      if(c == '-') { rotate(-theta); }
+      if(c == '+') { rotate(theta); }
+      if(c == '[') { pushMatrix(); }
+      if(c == ']') { popMatrix(); }
+    }
+  }
+  
+  if(mode == Mode.BUSH) {
+    translate(width/2, height);
+    float len = 25;
+    float theta = map(mouseX, 0,width, 0,2*PI);
+    for(int i=0; i<bush[level].length(); i++) {
+      char c = bush[level].charAt(i);
+      if(c == 'F' || c == '1') {
+        line(0,0, 0,-len);
+        translate(0,-len);
+      }
+      if(c == '-') { rotate(-theta+random(PI/128)); }
+      if(c == '+') { rotate(theta+random(PI/128)); }
+      if(c == '[') { pushMatrix(); }
+      if(c == ']') { popMatrix(); }
+    }
+  }
+  
+  
 }
 
 
 void keyPressed() {
+  if(key == ' ') { noLoop(); }
+  if(key == 'a') { loop(); }
   if(keyCode == LEFT || keyCode == DOWN) {
     level--;
     if(level < 0) level = 0;
