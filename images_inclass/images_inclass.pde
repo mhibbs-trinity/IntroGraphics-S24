@@ -4,8 +4,8 @@ PImage copy;
 
 void settings() {
   //orig = loadImage("SundayInPark.jpg");
-  //orig = loadImage("alamo.png");
-  orig = loadImage("balloons.png");
+  orig = loadImage("alamo.png");
+  //orig = loadImage("balloons.png");
   //orig = loadImage("city.png");
   //orig = loadImage("MTower.jpg");
   //orig = loadImage("orion.png");
@@ -16,10 +16,100 @@ void settings() {
   //orig = loadImage("robotBoy_run.jpg");
   size(orig.width,orig.height);
 }
+float[] arr = {1,2,3,4};
+
+float z = 1/25f;
+float[][] blur5 = {{z,z,z,z,z},
+                   {z,z,z,z,z},
+                   {z,z,z,z,z},
+                   {z,z,z,z,z},
+                   {z,z,z,z,z}};
+
+float[][] makeBlur(int sz) {
+  float[][] k = new float[sz][sz];
+  for(int i=0; i<sz; i++) {
+    for(int j=0; j<sz; j++) {
+      k[i][j] = 1f/sz/sz;
+    }
+  }
+  return k;
+}
+
+float[][] diagBlur(int sz) {
+  float[][] k = new float[sz][sz];
+  for(int i=0; i<sz; i++) {
+    k[i][i] = 1f/sz;
+  }
+  return k;
+}
+
+float[][] motionBlur(int sz, PVector dir) {
+  PGraphics pg = createGraphics(sz,sz);
+  pg.beginDraw();
+  pg.background(0);
+  pg.stroke(255);
+  dir.div(dir.mag()).mult(sz);
+  pg.translate(sz/2,sz/2);
+  pg.strokeWeight(1);
+  pg.line(-dir.x,-dir.y, dir.x,dir.y);
+  pg.endDraw();
+  
+  pushMatrix();
+  scale(50);
+  image(pg, 0,0);
+  popMatrix();
+  
+  float[][] k = new float[sz][sz];
+  pg.loadPixels();
+  float total = 0;
+  for(int i=0; i<sz; i++) {
+    for(int j=0; j<sz; j++) {
+      k[i][j] = brightness(pg.pixels[j*sz+i]);
+      total += k[i][j];
+    }
+  }
+  for(int i=0; i<sz; i++) {
+    for(int j=0; j<sz; j++) {
+      k[i][j] /= total;
+    }
+  }
+  
+  return k;
+}
 
 void setup() {
-  copy = copyImg(orig);
+  //copy = copyImg(orig);
+  //copy = convolve(orig, diagBlur(21));
+  copy = convolve(orig, motionBlur(31, new PVector(4,1)));
 }
+
+PImage convolve(PImage img, float[][] k) {
+  PImage dest = createImage(img.width, img.height, ARGB);
+  img.loadPixels();
+  dest.loadPixels();
+  int offSize = k.length / 2;
+  for(int x=offSize; x<img.width-offSize; x++) {
+    for(int y=offSize; y<img.height-offSize; y++) {
+      //Set RGB values of dest at x,y to filtered color
+      float r = 0;
+      float g = 0;
+      float b = 0;
+      for(int ox=-offSize; ox<=offSize; ox++) {
+        for(int oy=-offSize; oy<=offSize; oy++) {
+          color c = img.pixels[(y+oy)*img.width + (x+ox)];
+          float kval = k[ox+offSize][oy+offSize];
+          r += red(c) * kval;
+          g += green(c) * kval;
+          b += blue(c) * kval;
+        }
+      }
+      dest.pixels[y*img.width + x] = color(r,g,b);
+    }
+  }
+  dest.updatePixels();
+  return dest;
+}
+
 
 void drawGreen(PImage img) {
   img.loadPixels();
@@ -128,16 +218,17 @@ float bound(float num) {
 void draw() {
   background(0);
   
-  /*
+  
   if(keyPressed) {
     image(copy, 0,0);
   } else {
     image(orig,0,0);
-  }*/
+  }
+  /*
   image(orig,0,0);
   if(keyPressed) {
     drawBlur(orig);
-  }
+  }*/
   //drawGreen(gimg);
   //spotlight(orig);
   //drawShapes(orig);
