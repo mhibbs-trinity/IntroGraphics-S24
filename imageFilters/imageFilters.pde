@@ -263,11 +263,11 @@ void draw() {
   }
   //spotlight(img);
   //for(int i=0; i<50; i++) randomCircles(img);
-  /* Robot animation 
+   //Robot animation 
   image(frames[curr], mouseX,mouseY);
   curr++;
   if(curr >= frames.length) {
     curr = 0;
   }
-  */
+  
 }

@@ -151,30 +151,6 @@ float[][] sharpen(int rows) {
   return k;
 }
 
-float[][] normalizeKernel(float[][] k) {
-  float sum = 0;
-  for(int i=0; i<k.length; i++) {
-    for(int j=0; j<k[i].length; j++) {
-      sum += k[i][j];
-    }
-  }
-  for(int i=0; i<k.length; i++) {
-    for(int j=0; j<k[i].length; j++) {
-      k[i][j] /= sum;
-    }
-  }
-  return k;
-}
-float[][] pixelsToKernel(int[] pix, int rows) {
-  float[][] k = new float[rows][pix.length/rows];
-  for(int i=0; i<k.length; i++) {
-    for(int j=0; j<k[i].length; j++) {
-      k[i][j] = brightness(pix[j*k.length + i]);
-    }
-  }
-  return normalizeKernel(k);
-}
-
 float[][] squareBlur(int rows) {
   float[][] k = new float[rows][rows];
   for(int i=0; i<rows; i++) {
@@ -207,6 +183,29 @@ float[][] motionBlur(int rows, PVector direction) {
   image(pg,0,0);
   popMatrix();
   return pixelsToKernel(pg.pixels, rows);
+}
+float[][] pixelsToKernel(int[] pix, int rows) {
+  float[][] k = new float[rows][pix.length/rows];
+  for(int i=0; i<k.length; i++) {
+    for(int j=0; j<k[i].length; j++) {
+      k[i][j] = brightness(pix[j*k.length + i]);
+    }
+  }
+  return normalizeKernel(k);
+}
+float[][] normalizeKernel(float[][] k) {
+  float sum = 0;
+  for(int i=0; i<k.length; i++) {
+    for(int j=0; j<k[i].length; j++) {
+      sum += k[i][j];
+    }
+  }
+  for(int i=0; i<k.length; i++) {
+    for(int j=0; j<k[i].length; j++) {
+      k[i][j] /= sum;
+    }
+  }
+  return k;
 }
 
 PImage grayScale(PImage img) {
