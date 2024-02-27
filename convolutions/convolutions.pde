@@ -161,12 +161,6 @@ float[][] squareBlur(int rows) {
   return k;
 }
 
-float[][] gaussBlur(int rows) {
-  float[][] k = new float[rows][rows];
-  return k;
-}
-
-
 float[][] motionBlur(int rows, PVector direction) {
   direction.div(direction.mag());
   PGraphics pg = createGraphics(rows,rows);
