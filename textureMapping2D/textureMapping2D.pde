@@ -18,7 +18,7 @@ void draw() {
   textureMode(NORMAL);
   vertex(a.x, a.y, 0, 0);
   vertex(b.x, b.y, 1, 0);
-  vertex(c.x, c.y, 0.75, 0.75);
+  vertex(c.x, c.y, 0.5, 0.5);
   vertex(d.x, d.y, 0, 1);
 
   endShape();

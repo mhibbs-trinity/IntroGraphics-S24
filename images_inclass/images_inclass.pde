@@ -14,7 +14,7 @@ void settings() {
   //gimg = loadImage("green_bike.jpg");
   gimg = loadImage("green_dude.jpg");
   //orig = loadImage("robotBoy_run.jpg");
-  size(orig.width,orig.height);
+  size(orig.width,orig.height, P2D);
 }
 float[] arr = {1,2,3,4};
 
@@ -218,12 +218,23 @@ float bound(float num) {
 void draw() {
   background(0);
   
+  textureMode(NORMAL);
+  beginShape();
+  texture(orig);
+  vertex(100,100, 0,0);
+  vertex(400,300, 1,0.5);
+  vertex(150,400, 0,0.5);
   
+  endShape(CLOSE);
+  
+  
+  
+  /*
   if(keyPressed) {
     image(copy, 0,0);
   } else {
     image(orig,0,0);
-  }
+  }*/
   /*
   image(orig,0,0);
   if(keyPressed) {
