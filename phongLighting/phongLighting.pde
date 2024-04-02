@@ -1,4 +1,4 @@
-enum Mode { SPHERES, SINGLEQUAD, QUADTRI, MULTIQUAD }
+enum Mode { SPHERES, SINGLEQUAD, MULTIQUAD }
 Mode mode = Mode.SPHERES;
 
 boolean showStroke = false;
@@ -72,7 +72,6 @@ void draw() {
 void keyPressed() {
   if(key == 's') mode = Mode.SPHERES;
   if(key == 'q') mode = Mode.SINGLEQUAD;
-  if(key == 't') mode = Mode.QUADTRI;
   if(key == 'm') mode = Mode.MULTIQUAD;
   if(key == ' ') showStroke ^= true;
 }
