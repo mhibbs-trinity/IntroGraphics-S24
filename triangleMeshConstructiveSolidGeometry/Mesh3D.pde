@@ -10,7 +10,7 @@ class Mesh3D {
   
   BSPTree toBSPTree() {
     BSPTree tree = new BSPTree();
-    java.util.Collections.shuffle(tris);
+    //java.util.Collections.shuffle(tris);
     for(int[] tri : tris) {
       tree.add(new MyTri(verts.get(tri[0]),verts.get(tri[1]),verts.get(tri[2])));
     }
@@ -37,8 +37,11 @@ class Mesh3D {
   }
   
   Mesh3D intersect(Mesh3D other) {
+    println("this tree construct");
     BSPTree atree = this.toBSPTree();
+    println("other tree construct");
     BSPTree btree = other.toBSPTree();
+    println("Intersection construction");
     return (atree.intersection(btree));
   }
   Mesh3D difference(Mesh3D other) {

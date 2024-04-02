@@ -1,6 +1,8 @@
 class BSPTree {
   float eps = 0.0005;
   
+  ArrayList<MyTri> lostTriangles = new ArrayList<MyTri>();
+  
   class BSPNode {
     MyTri t;
     BSPNode front, back;
@@ -34,6 +36,8 @@ class BSPTree {
         else return front.add(tri);
       } else {
         println("Triangle to subdivide during add: " + fa + "," + fb + "," + fc);
+        lostTriangles.add(tri);
+        println(lostTriangles.size());
         //This is a trinanlge that intersects during the adding process,
         //So, just add this to both sides...
         /*
@@ -145,7 +149,13 @@ class BSPTree {
     else return root.add(t);
   }
   void display() {
-    root.display(); 
+    fill(255);
+    root.display();
+    fill(0,255,0);
+    println(lostTriangles.size());
+    for(MyTri tri : lostTriangles) {
+      tri.display();
+    }
   }
   ArrayList<MyTri> preOrderTraversal() {
     ArrayList<MyTri> result = new ArrayList<MyTri>();
