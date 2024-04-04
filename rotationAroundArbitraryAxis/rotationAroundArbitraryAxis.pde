@@ -1,6 +1,6 @@
 
 enum Mode { BASISCHANGE, ROTCOMPOSITE };
-Mode mode = Mode.BASISCHANGE;
+Mode mode = Mode.ROTCOMPOSITE;
 
 float angle = 0f;
 PVector rotAxis;

@@ -89,6 +89,7 @@ void draw() {
   else textureWrap(CLAMP);
   
   is.display(img);
+  //noFill();
   //is.display();
   
   //popMatrix();

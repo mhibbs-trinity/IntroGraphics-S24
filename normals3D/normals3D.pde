@@ -9,6 +9,8 @@ void draw() {
   
   pointLight(255,255,255, map(mouseX,0,width,-width/2,width/2),
                           map(mouseY,0,height,-height/2, height/2),1000);
+                          
+  ambientLight(100,0,0);
   
   PVector n = new PVector(map(mouseX, 0,width, 1,100),
                           0, map(mouseY, 0,height, 1,100));
@@ -19,6 +21,18 @@ void draw() {
   PVector d = new PVector( 200, 200,-100);
   PVector e = new PVector(-200, 200,-100);
   
+  PVector anorm = new PVector(0,0,1);
+  PVector bnorm = new PVector(-1,-1,0);
+  bnorm.normalize();
+  PVector cnorm = new PVector( 1,-1,0);
+  cnorm.normalize();
+  PVector dnorm = new PVector( 1, 1,0);
+  dnorm.normalize();
+  PVector enorm = new PVector(-1, 1,0);
+  enorm.normalize();
+  
+  
+  
   beginShape(TRIANGLES);
   
   PVector norm = PVector.sub(b,a);
@@ -26,21 +40,36 @@ void draw() {
   norm.normalize();
   normal(norm.x, norm.y, norm.z);
   
-  doVertex(a);
-  doVertex(b);
-  doVertex(c);
+  doVertex(a, anorm);
+  doVertex(b, bnorm);
+  doVertex(c, cnorm);
   
-  doVertex(a);
-  doVertex(c);
-  doVertex(d);
+  norm = PVector.sub(c,a);
+  norm = norm.cross(PVector.sub(d,a));
+  norm.normalize();
+  normal(norm.x, norm.y, norm.z);
   
-  doVertex(a);
-  doVertex(d);
-  doVertex(e);
+  doVertex(a, anorm);
+  doVertex(c, cnorm);
+  doVertex(d, dnorm);
   
-  doVertex(a);
-  doVertex(e);
-  doVertex(b);
+  norm = PVector.sub(d,a);
+  norm = norm.cross(PVector.sub(e,a));
+  norm.normalize();
+  normal(norm.x, norm.y, norm.z);
+  
+  doVertex(a, anorm);
+  doVertex(d, dnorm);
+  doVertex(e, enorm);
+  
+  norm = PVector.sub(e,a);
+  norm = norm.cross(PVector.sub(b,a));
+  norm.normalize();
+  normal(norm.x, norm.y, norm.z);
+  
+  doVertex(a, anorm);
+  doVertex(e, enorm);
+  doVertex(b, bnorm);
   endShape();
                           
                           
@@ -59,6 +88,7 @@ void draw() {
   
 }
 
-void doVertex(PVector v) {
+void doVertex(PVector v, PVector n) {
+  normal(n.x,n.y,n.z);
   vertex(v.x,v.y,v.z);
 }

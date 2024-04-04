@@ -9,7 +9,7 @@ void setup() {
   img = loadImage("jupiter.jpg");
   //img = loadImage("gray.jpg");
   //img = loadImage("grid.png");
-  ts = new TextureSphere(180, 100, img);
+  ts = new TextureSphere(180, 80, img);
 }
 
 void draw() {

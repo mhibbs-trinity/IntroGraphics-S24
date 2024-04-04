@@ -23,6 +23,7 @@ class TextureSphere {
         vertex(xpos(u+uStep,v+vStep),ypos(u+uStep,v+vStep),zpos(u+uStep,v+vStep), map(u+uStep, 0,2*PI, img.width,0), map(v+vStep, -PI/2,PI/2, 0,img.height));
         vertex(xpos(u,v+vStep),ypos(u,v+vStep),zpos(u,v+vStep), map(u, 0,2*PI, img.width,0), map(v+vStep, -PI/2,PI/2, 0,img.height));
         */
+        
         createVertex(u,v);
         createVertex(u+uStep,v);
         createVertex(u+uStep,v+vStep);
