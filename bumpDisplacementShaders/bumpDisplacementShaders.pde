@@ -62,6 +62,7 @@ void draw() {
       }
     }
     endShape();
+    sphere(200);
   }
   else if(mode == 0) {
     beginShape(QUAD);
@@ -72,6 +73,9 @@ void draw() {
     vertex(450,450,0, 1024,1024);
     vertex(450, 50,0, 1024,   0);
     endShape();
+    
+    
+    sphere(200);
   }
 }
 
