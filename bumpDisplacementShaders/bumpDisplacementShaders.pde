@@ -5,7 +5,7 @@ PImage htTex;
 PImage normTex;
 float rot;
 
-int mode = 0; //Set to 1 for displacement mapping; to 0 for bump mapping
+int mode = 1; //Set to 1 for displacement mapping; to 0 for bump mapping
 
 void setup() {
   size(500,500, P3D);
@@ -62,6 +62,7 @@ void draw() {
       }
     }
     endShape();
+    sphere(200);
   }
   else if(mode == 0) {
     beginShape(QUAD);
@@ -72,6 +73,9 @@ void draw() {
     vertex(450,450,0, 1024,1024);
     vertex(450, 50,0, 1024,   0);
     endShape();
+    
+    
+    sphere(200);
   }
 }
 
