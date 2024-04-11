@@ -9,5 +9,7 @@ varying vec4 vertColor;
 
 void main() {
   gl_Position = transform * vertex;    
-  vertColor = color;
+  vertColor = vec4((vertex.x+200)/400,
+                   (vertex.y+200)/400,
+                   (vertex.z+200)/400, 1.0);
 }

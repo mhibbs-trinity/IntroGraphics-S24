@@ -5,7 +5,7 @@ PImage htTex;
 PImage normTex;
 float rot;
 
-int mode = 0; //Set to 1 for displacement mapping; to 0 for bump mapping
+int mode = 1; //Set to 1 for displacement mapping; to 0 for bump mapping
 
 void setup() {
   size(500,500, P3D);
@@ -48,7 +48,7 @@ void draw() {
     float lo = 50.0;
     float hi = 450.0;
     float diff = hi-lo;
-    float segs = 250.0;
+    float segs = 20.0;
     float step = 1.0/segs;
     beginShape(QUADS);
     texture(colTex);

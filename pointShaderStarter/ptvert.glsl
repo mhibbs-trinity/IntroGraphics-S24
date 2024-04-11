@@ -21,6 +21,7 @@ void main() {
   vec4 centerPos = transform * vertex;
   vec4 posOffset = vec4(offset, 0.0, 0.0);
   gl_Position = centerPos + posOffset;
+  //gl_Position = transform * (vertex + vec4(offset, 0,0));
 
   vertColor = color;
 }
