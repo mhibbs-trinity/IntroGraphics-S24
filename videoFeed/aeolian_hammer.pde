@@ -1,7 +1,7 @@
 
 
 
-
+//*
 import processing.video.*;
 // Size of each cell in the grid
 int videoScale = 15;
@@ -27,14 +27,14 @@ void captureEvent(Capture video) {
 void draw() {
   background(0);
   video.loadPixels();
-  /*
-  for (int i = 0; i < video.width; i++) {
-    for (int j = 0; j < video.height; j++) {
-      color c = video.pixels[i + j * video.width];
-      stroke(c);
-      point(i,j);
-    }
-  }*/
+  
+  //for (int i = 0; i < video.width; i++) {
+  //  for (int j = 0; j < video.height; j++) {
+  //    color c = video.pixels[i + j * video.width];
+  //    stroke(c);
+  //    point(i,j);
+  //  }
+  //}
   
   for (int i = 0; i < cols; i++) {
     for (int j = 0; j < rows; j++) {
