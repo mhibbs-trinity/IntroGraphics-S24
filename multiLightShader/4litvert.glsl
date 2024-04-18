@@ -25,7 +25,7 @@ void main() {
   ecNormal = normalize(normalMatrix * normal);
   
   for(int i=0; i<lightCount; i++) {
-	lightDir[i] = normalize(lightPosition[i].xyz - ecVertex);  
+	  lightDir[i] = normalize(lightPosition[i].xyz - ecVertex);  
   	hVector[i] = normalize(lightDir[i] + toEye);
   }
   

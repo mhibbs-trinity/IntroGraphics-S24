@@ -48,7 +48,7 @@ void draw() {
     float lo = 50.0;
     float hi = 450.0;
     float diff = hi-lo;
-    float segs = 250.0;
+    float segs = 20.0;
     float step = 1.0/segs;
     beginShape(QUADS);
     texture(colTex);
