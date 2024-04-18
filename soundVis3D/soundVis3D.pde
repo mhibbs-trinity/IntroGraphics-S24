@@ -19,8 +19,8 @@ void setup() {
   size(800,600, P3D);
   minim = new Minim(this);
   //song = minim.loadFile("jane.mp3", 1024);
-  song = minim.loadFile("felt.mp3", 1024);
-  //song = minim.loadFile("lastofus.mp3", 1024);
+  //song = minim.loadFile("felt.mp3", 1024);
+  song = minim.loadFile("lastofus.mp3", 1024);
   //song = minim.loadFile("16Hz-20kHz-Exp-1f-10sec.mp3", 1024);
   //song = minim.loadFile("derezzed.mp3", 1024);
   //song = minim.loadFile("pillow.mp3", 1024);
