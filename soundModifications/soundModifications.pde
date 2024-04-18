@@ -19,7 +19,7 @@ void setup() {
   //String filename = "GameOfThrones.mp3";
   //String filename = "GoodFight.mp3";
   //String filename = "DoctorWho.mp3";
-  String filename = "Simpsons.mp3";
+  //String filename = "Simpsons.mp3";
   //String filename = "Dora.mp3";
   //String filename = "Batman.mp3";
   //String filename = "Survivor.mp3";
@@ -29,7 +29,7 @@ void setup() {
   //String filename = "BigBang.mp3";
   //String filename = "BreakingBad.mp3";
   //String filename = "TwilightZone.mp3";
-  //String filename = "Jeopardy.mp3";
+  String filename = "Jeopardy.mp3";
   //String filename = "GoldenGirls.mp3";
   //String filename = "ILoveLucy.mp3";
   
@@ -46,7 +46,7 @@ void setup() {
   //backward= doubleSamples(reverse(forward));
   //backward= everyOtherSample(reverse(forward));
   //backward= resampleAtRate(forward, 0.3f);
-  backward= resampleRateInterpolation(forward, 0.5f, 1f);
+  backward= resampleRateInterpolation(forward, 0.25f, 2f);
   backward.trigger();
 }
 
