@@ -10,7 +10,8 @@ void setup() {
   
   size(800,800,P3D); 
   //shade = loadShader("basicFrag.glsl","vert.glsl");
-  shade = loadShader("neonFrag.glsl","vert.glsl");
+  //shade = loadShader("neonFrag.glsl","vert.glsl");
+  shade = loadShader("flareFrag.glsl","vert.glsl");
   shader(shade);
 }
 

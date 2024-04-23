@@ -29,13 +29,12 @@ void main() {
   vec2 clip = vertTexCoord.xy * 2.0 - 1.0;
   vec2 clipOrig = clip;
 
-  
-
   vec3 finalColor = vec3(0.0);
 
   for(float i = 0.0; i<4.0; i++) {
     //clip = clip * 2.0; 
-    clip = fract(clip * 1.5);
+    //clip = fract(clip * 1.5);
+    clip = fract(clip * map(mouseX, 0,800, 1.0,3.0));
     clip = clip - 0.5;
 
     //Distance to center point

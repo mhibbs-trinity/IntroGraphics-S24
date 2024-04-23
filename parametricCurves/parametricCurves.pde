@@ -22,8 +22,8 @@ void draw() {
   //for(float t=0; t<map(mouseX, 0,width, 1,50)*PI; t+=stepSize) {
   for(float t=0; t<6*PI; t+=stepSize) {
     //vertex(fx(t,m),fy(t,m));
-    //vertex(lx(t,5.0*mouseX/width),ly(t,5.0*mouseY/height));
-    vertex(bx(t),by(t));
+    vertex(lx(t,5.0*mouseX/width),ly(t,5.0*mouseY/height));
+    //vertex(bx(t),by(t));
     //vertex(hx(t,5,q,m), hy(t,5,q,m));
   }
   endShape();
